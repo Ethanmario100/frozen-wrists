@@ -29,18 +29,18 @@
           <span class="filter-chip">Out of stock</span>
           <span class="filter-label" style="margin-left:8px">Price</span>
           <div class="price-chip">
-            <input type="text" value="$0">
+            <input type="text" placeholder="$ Min" value="">
             <span>—</span>
-            <input type="text" value="$60">
+            <input type="text" placeholder="$ Max" value="">
           </div>
         </div>
         <div class="collection-toolbar">
           <span class="count">18 items</span>
           <div class="sort-wrapper">
-            <button class="sort-btn" id="sortBtn">Featured</button>
+            <button class="sort-btn" id="sortBtn">Best selling</button>
             <div class="sort-menu" id="sortMenu">
-              <button class="active" data-sort="featured">Featured</button>
-              <button data-sort="best">Best selling</button>
+              <button class="active" data-sort="best">Best selling</button>
+              <button data-sort="deals">Great deals</button>
               <button data-sort="az">Alphabetically, A-Z</button>
               <button data-sort="za">Alphabetically, Z-A</button>
               <button data-sort="low">Price, low to high</button>
@@ -158,8 +158,8 @@
         </div>
       </div>
 
-      <div class="product-card out-of-stock" data-name="Moissanite Infinity Chain" data-price="59.99" data-stock="out" data-sold="150">
-        <div class="oos-badge">Out of stock</div>
+      <div class="product-card" data-name="Moissanite Infinity Chain" data-price="59.99" data-stock="in" data-sold="150">
+        <div class="flash-badge">50% OFF</div>
         <a href="/products/moissanite-tennis-necklace.html">
           <div class="image-wrap">
             <img class="primary" src="/images/product_13.png" alt="Moissanite Infinity Chain">
@@ -168,6 +168,7 @@
         <div class="info">
           <a href="/products/moissanite-tennis-necklace.html" class="title">Moissanite Infinity Chain</a>
           <div class="price"><span class="regular">$119.99</span><span class="sale">$59.99</span></div>
+          <a href="/products/moissanite-tennis-necklace.html" class="shop-link">Shop</a>
         </div>
       </div>
 
@@ -394,25 +395,31 @@
       const grid = document.getElementById('productGrid');
       let cards = getCards();
 
-      const inStockChip = document.querySelector('.filter-chip:first-child');
-      const outStockChip = document.querySelector('.filter-chip:nth-child(2)');
-      const showIn = inStockChip.classList.contains('active');
-      const showOut = outStockChip.classList.contains('active');
+      const chips = document.querySelectorAll('.filter-chip');
+      const showIn = chips[0].classList.contains('active');
+      const showOut = chips[1].classList.contains('active');
 
-      if (showIn && !showOut) {
-        cards = cards.filter(c => c.dataset.stock === 'in');
-      } else if (showOut && !showIn) {
-        cards = cards.filter(c => c.dataset.stock === 'out');
-      }
+      const priceInputs = document.querySelectorAll('.price-chip input');
+      const minPrice = parseFloat(priceInputs[0].value.replace('$', '')) || 0;
+      const maxPrice = parseFloat(priceInputs[1].value.replace('$', '')) || 999;
 
-      const minInput = document.querySelector('.price-chip input:first-child');
-      const maxInput = document.querySelector('.price-chip input:nth-child(2)');
-      const minPrice = parseFloat(minInput.value.replace('$', '')) || 0;
-      const maxPrice = parseFloat(maxInput.value.replace('$', '')) || 999;
-      cards = cards.filter(c => {
+      // Show/hide all cards based on both stock AND price filters
+      cards.forEach(c => {
+        let hide = false;
         const p = parseFloat(c.dataset.price);
-        return p >= minPrice && p <= maxPrice;
+
+        // Stock filter: toggle In stock / Out of stock
+        if (showIn && !showOut) hide = hide || c.dataset.stock !== 'in';
+        if (showOut && !showIn) hide = hide || c.dataset.stock !== 'out';
+
+        // Price filter: only active when user has typed something
+        if (minPrice > 0 || maxPrice < 999) hide = hide || (p < minPrice || p > maxPrice);
+
+        c.style.display = hide ? 'none' : '';
       });
+
+      // Filter to visible cards for sorting and counting
+      cards = cards.filter(c => c.style.display !== 'none');
 
       const activeSort = document.querySelector('.sort-menu button.active');
       if (activeSort) {
@@ -422,35 +429,52 @@
         else if (sort === 'low') cards.sort((a, b) => parseFloat(a.dataset.price) - parseFloat(b.dataset.price));
         else if (sort === 'high') cards.sort((a, b) => parseFloat(b.dataset.price) - parseFloat(a.dataset.price));
         else if (sort === 'best') cards.sort((a, b) => (parseInt(b.dataset.sold) || 0) - (parseInt(a.dataset.sold) || 0));
+        else if (sort === 'deals') cards.sort((a, b) => parseFloat(a.dataset.price) - parseFloat(b.dataset.price));
         else cards.sort((a, b) => parseInt(a.dataset.sold) - parseInt(b.dataset.sold));
       }
 
       cards.forEach(c => grid.appendChild(c));
       document.querySelector('.count').textContent = cards.length + ' items';
 
+      // Smooth stagger animation
+      grid.style.transition = 'none';
       cards.forEach((c, i) => {
-        c.style.animation = 'none';
-        c.offsetHeight;
-        c.style.animation = 'cardPopIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
-        c.style.animationDelay = (i * 0.03) + 's';
+        c.style.opacity = '0';
+        c.style.transform = 'translateY(8px)';
+        c.style.transition = 'opacity 0.3s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.35s cubic-bezier(0.34,1.56,0.64,1)';
+        c.style.transitionDelay = (i * 0.02) + 's';
+      });
+      requestAnimationFrame(() => {
+        cards.forEach((c, i) => {
+          c.style.opacity = '1';
+          c.style.transform = 'translateY(0)';
+        });
+        setTimeout(() => {
+          cards.forEach(c => { c.style.transition = ''; c.style.transitionDelay = ''; });
+        }, 500);
       });
     }
 
     function switchGrid(cols) {
       const grid = document.getElementById('productGrid');
-      grid.className = 'product-grid cols-' + cols;
-      grid.style.opacity = '0.6';
-      grid.style.transform = 'scale(0.97)';
+      const visibleCards = getCards().filter(c => c.style.display !== 'none');
+      visibleCards.forEach(c => { c.style.transition = 'transform 0.15s ease, opacity 0.15s ease'; c.style.transform = 'scale(0.96)'; c.style.opacity = '0.3'; });
       setTimeout(() => {
-        grid.style.transition = 'opacity 0.25s ease, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        grid.style.opacity = '1';
-        grid.style.transform = 'scale(1)';
-        setTimeout(() => { grid.style.transition = ''; }, 300);
-        getCards().forEach((c, i) => {
-          c.style.animation = 'none';
-          c.offsetHeight;
-          c.style.animation = 'cardPopIn 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
-          c.style.animationDelay = (i * 0.025) + 's';
+        grid.className = 'product-grid cols-' + cols;
+        grid.style.opacity = '0.6';
+        requestAnimationFrame(() => {
+          grid.style.transition = 'opacity 0.25s ease';
+          grid.style.opacity = '1';
+          visibleCards.forEach((c, i) => {
+            c.style.transform = 'scale(1)';
+            c.style.opacity = '1';
+            c.style.transition = 'transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s ease';
+            c.style.transitionDelay = (i * 0.025) + 's';
+          });
+          setTimeout(() => {
+            grid.style.transition = '';
+            visibleCards.forEach(c => { c.style.transition = ''; c.style.transitionDelay = ''; });
+          }, 500);
         });
       }, 100);
     }
@@ -480,7 +504,10 @@
 
     document.querySelectorAll('.filter-chip').forEach(chip => {
       chip.addEventListener('click', () => {
-        chip.classList.toggle('active');
+        const chips = document.querySelectorAll('.filter-chip');
+        const other = chip === chips[0] ? chips[1] : chips[0];
+        chip.classList.add('active');
+        other.classList.remove('active');
         filterAndSort();
       });
     });
@@ -489,6 +516,8 @@
       inp.addEventListener('input', filterAndSort);
       inp.addEventListener('change', filterAndSort);
     });
+
+    filterAndSort();
 
     const style = document.createElement('style');
     style.textContent = `

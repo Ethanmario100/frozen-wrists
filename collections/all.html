@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products – Shiny Vendors</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="announcement-bar">Free shipping on all orders</div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="header-logo"><img src="/images/logo.png" alt="Shiny Vendors - Home"></a>
+      <div class="header-icons">
+        <a href="/search.html">🔍 <span class="search-text">Search</span></a>
+        <a href="/account.html">👤 <span class="account-text">Account</span></a>
+        <a href="/cart.html">🛒 0</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="collection-page">
+    <div class="collection-header">
+      <h1>Products</h1>
+      <div class="collection-controls">
+        <div class="filter-bar">
+          <span class="filter-label">Availability</span>
+          <span class="filter-chip active">In stock</span>
+          <span class="filter-chip">Out of stock</span>
+          <span class="filter-label" style="margin-left:8px">Price</span>
+          <div class="price-chip">
+            <input type="text" value="$0">
+            <span>—</span>
+            <input type="text" value="$60">
+          </div>
+        </div>
+        <div class="collection-toolbar">
+          <span class="count">18 items</span>
+          <div class="sort-wrapper">
+            <button class="sort-btn" id="sortBtn">Featured</button>
+            <div class="sort-menu" id="sortMenu">
+              <button class="active" data-sort="featured">Featured</button>
+              <button data-sort="best">Best selling</button>
+              <button data-sort="az">Alphabetically, A-Z</button>
+              <button data-sort="za">Alphabetically, Z-A</button>
+              <button data-sort="low">Price, low to high</button>
+              <button data-sort="high">Price, high to low</button>
+            </div>
+          </div>
+          <div class="grid-toggle">
+            <button data-cols="2" title="2 columns">⊞</button>
+            <button data-cols="3" class="active" title="3 columns">≡</button>
+            <button data-cols="4" title="4 columns">☰</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid cols-3" id="productGrid">
+      <div class="product-card" data-name="Moissanite Arabic Watch" data-price="49.99" data-stock="in" data-sold="1200">
+        <div class="flash-badge">50% OFF</div>
+        <div class="sale-badge">Sale</div>
+        <a href="/products/moissanite-generic-watch-supplier-3.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_7a.png" alt="Moissanite Arabic Watch">
+            <img class="secondary" src="/images/product_7b.png" alt="Moissanite Arabic Watch">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-generic-watch-supplier-3.html" class="title">Moissanite Arabic Watch</a>
+          <div class="price"><span class="regular">$99.99</span><span class="sale">$49.99</span></div>
+          <a href="/products/moissanite-generic-watch-supplier-3.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card out-of-stock" data-name="Moissanite Clove Bracelet" data-price="19.99" data-stock="out" data-sold="200">
+        <div class="oos-badge">Out of stock</div>
+        <a href="/products/moissanite-drop-bracelet.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_9.png" alt="Moissanite Clove Bracelet">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-drop-bracelet.html" class="title">Moissanite Clove Bracelet</a>
+          <div class="price"><span class="regular">$39.99</span><span class="sale">$19.99</span></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Cuban Bracelet" data-price="19.99" data-stock="in" data-sold="350">
+        <div class="flash-badge">50% OFF</div>
+        <a href="/products/moissanite-star-bracelet.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_10.png" alt="Moissanite Cuban Bracelet">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-star-bracelet.html" class="title">Moissanite Cuban Bracelet</a>
+          <div class="price"><span class="regular">$39.99</span><span class="sale">$19.99</span></div>
+          <a href="/products/moissanite-star-bracelet.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Cuban Bracelet" data-price="19.99" data-stock="in" data-sold="180">
+        <div class="flash-badge">50% OFF</div>
+        <a href="/products/moissanite-generic-watch-1.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_11.png" alt="Moissanite Cuban Bracelet">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-generic-watch-1.html" class="title">Moissanite Cuban Bracelet</a>
+          <div class="price"><span class="regular">$39.99</span><span class="sale">$19.99</span></div>
+          <a href="/products/moissanite-generic-watch-1.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Cuban Chain" data-price="59.99" data-stock="in" data-sold="550">
+        <div class="flash-badge">50% OFF</div>
+        <a href="/products/moissanite-cuban-chain-1.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_12a.png" alt="Moissanite Cuban Chain">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-cuban-chain-1.html" class="title">Moissanite Cuban Chain</a>
+          <div class="price"><span class="regular">$119.99</span><span class="sale">$59.99</span></div>
+          <a href="/products/moissanite-cuban-chain-1.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Cuban Chain" data-price="59.99" data-stock="in" data-sold="480">
+        <div class="flash-badge">50% OFF</div>
+        <a href="/products/moissanite-cuban-chain.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_12b.png" alt="Moissanite Cuban Chain">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-cuban-chain.html" class="title">Moissanite Cuban Chain</a>
+          <div class="price"><span class="regular">$119.99</span><span class="sale">$59.99</span></div>
+          <a href="/products/moissanite-cuban-chain.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Gold Watch" data-price="49.99" data-stock="in" data-sold="2800">
+        <div class="flash-badge">50% OFF</div>
+        <div class="sale-badge">Best Seller</div>
+        <a href="/products/moissanite-generic-watch-supplier-1.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_8a.png" alt="Moissanite Gold Watch">
+            <img class="secondary" src="/images/product_8b.png" alt="Moissanite Gold Watch">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-generic-watch-supplier-1.html" class="title">Moissanite Gold Watch</a>
+          <div class="price"><span class="regular">$99.99</span><span class="sale">$49.99</span></div>
+          <a href="/products/moissanite-generic-watch-supplier-1.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card out-of-stock" data-name="Moissanite Infinity Chain" data-price="59.99" data-stock="out" data-sold="150">
+        <div class="oos-badge">Out of stock</div>
+        <a href="/products/moissanite-tennis-necklace.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_13.png" alt="Moissanite Infinity Chain">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-tennis-necklace.html" class="title">Moissanite Infinity Chain</a>
+          <div class="price"><span class="regular">$119.99</span><span class="sale">$59.99</span></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Skeleton Watch" data-price="49.99" data-stock="in" data-sold="2600">
+        <div class="flash-badge">50% OFF</div>
+        <div class="sale-badge">Popular</div>
+        <a href="/products/moissanite-generic-watch-supplier-2.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_5a.png" alt="Moissanite Skeleton Watch">
+            <img class="secondary" src="/images/product_5b.png" alt="Moissanite Skeleton Watch">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-generic-watch-supplier-2.html" class="title">Moissanite Skeleton Watch</a>
+          <div class="price"><span class="regular">$99.99</span><span class="sale">$49.99</span></div>
+          <a href="/products/moissanite-generic-watch-supplier-2.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Strap Watch" data-price="49.99" data-stock="in" data-sold="300">
+        <div class="flash-badge">50% OFF</div>
+        <a href="/products/moissanite-strap-watch-2.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_14a.png" alt="Moissanite Strap Watch">
+            <img class="secondary" src="/images/product_14b.png" alt="Moissanite Strap Watch">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-strap-watch-2.html" class="title">Moissanite Strap Watch</a>
+          <div class="price"><span class="regular">$99.99</span><span class="sale">$49.99</span></div>
+          <a href="/products/moissanite-strap-watch-2.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Strap Watch" data-price="49.99" data-stock="in" data-sold="200">
+        <div class="flash-badge">50% OFF</div>
+        <a href="/products/moissanite-strap-watch-1.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_15a.png" alt="Moissanite Strap Watch">
+            <img class="secondary" src="/images/product_15b.png" alt="Moissanite Strap Watch">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-strap-watch-1.html" class="title">Moissanite Strap Watch</a>
+          <div class="price"><span class="regular">$99.99</span><span class="sale">$49.99</span></div>
+          <a href="/products/moissanite-strap-watch-1.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Strap Watch" data-price="49.99" data-stock="in" data-sold="500">
+        <div class="flash-badge">50% OFF</div>
+        <a href="/products/moissanite-strap-watch.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_16a.png" alt="Moissanite Strap Watch">
+            <img class="secondary" src="/images/product_16b.png" alt="Moissanite Strap Watch">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-strap-watch.html" class="title">Moissanite Strap Watch</a>
+          <div class="price"><span class="regular">$99.99</span><span class="sale">$49.99</span></div>
+          <a href="/products/moissanite-strap-watch.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Thorn Watch" data-price="49.99" data-stock="in" data-sold="1200">
+        <div class="flash-badge">50% OFF</div>
+        <div class="sale-badge">Limited</div>
+        <a href="/products/moissanite-generic-watch-supplier-5.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_4a.png" alt="Moissanite Thorn Watch">
+            <img class="secondary" src="/images/product_4b.png" alt="Moissanite Thorn Watch">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-generic-watch-supplier-5.html" class="title">Moissanite Thorn Watch</a>
+          <div class="price"><span class="regular">$99.99</span><span class="sale">$49.99</span></div>
+          <a href="/products/moissanite-generic-watch-supplier-5.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Watch" data-price="49.99" data-stock="in" data-sold="400">
+        <div class="flash-badge">50% OFF</div>
+        <a href="/products/moissanite-generic-watch-2.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_17a.png" alt="Moissanite Watch">
+            <img class="secondary" src="/images/product_17b.png" alt="Moissanite Watch">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-generic-watch-2.html" class="title">Moissanite Watch</a>
+          <div class="price"><span class="regular">$99.99</span><span class="sale">$49.99</span></div>
+          <a href="/products/moissanite-generic-watch-2.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Watch" data-price="49.99" data-stock="in" data-sold="300">
+        <div class="flash-badge">50% OFF</div>
+        <a href="/products/moissanite-generic-watch-supplier-6.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_3a.png" alt="Moissanite Watch">
+            <img class="secondary" src="/images/product_3b.png" alt="Moissanite Watch">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-generic-watch-supplier-6.html" class="title">Moissanite Watch</a>
+          <div class="price"><span class="regular">$99.99</span><span class="sale">$49.99</span></div>
+          <a href="/products/moissanite-generic-watch-supplier-6.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Watch" data-price="49.99" data-stock="in" data-sold="600">
+        <div class="flash-badge">50% OFF</div>
+        <a href="/products/moissanite-generic-watch-supplier-4.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_6a.png" alt="Moissanite Watch">
+            <img class="secondary" src="/images/product_6b.png" alt="Moissanite Watch">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-generic-watch-supplier-4.html" class="title">Moissanite Watch</a>
+          <div class="price"><span class="regular">$99.99</span><span class="sale">$49.99</span></div>
+          <a href="/products/moissanite-generic-watch-supplier-4.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Watch" data-price="49.99" data-stock="in" data-sold="500">
+        <div class="flash-badge">50% OFF</div>
+        <a href="/products/moissanite-generic-watch-supplier.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_2a.png" alt="Moissanite Watch">
+            <img class="secondary" src="/images/product_2b.png" alt="Moissanite Watch">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-generic-watch-supplier.html" class="title">Moissanite Watch</a>
+          <div class="price"><span class="regular">$99.99</span><span class="sale">$49.99</span></div>
+          <a href="/products/moissanite-generic-watch-supplier.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-name="Moissanite Watch" data-price="49.99" data-stock="in" data-sold="2500">
+        <div class="flash-badge">50% OFF</div>
+        <div class="sale-badge">Popular</div>
+        <a href="/products/moissanite-generic-watch.html">
+          <div class="image-wrap">
+            <img class="primary" src="/images/product_1a.png" alt="Moissanite Watch">
+            <img class="secondary" src="/images/product_1b.png" alt="Moissanite Watch">
+          </div>
+        </a>
+        <div class="info">
+          <a href="/products/moissanite-generic-watch.html" class="title">Moissanite Watch</a>
+          <div class="price"><span class="regular">$99.99</span><span class="sale">$49.99</span></div>
+          <a href="/products/moissanite-generic-watch.html" class="shop-link">Shop</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="reviews-section">
+    <div class="rating-badge">
+      <div class="stars">★★★★★</div>
+      <div class="text"><strong>Rated 4.7/5</strong> reviews</div>
+    </div>
+    <h2 class="section-title" style="padding-top:0">Customer Reviews</h2>
+    <p style="margin-bottom:24px;color:#a1a1a6">See what our customers are saying about our products</p>
+    <div class="review-cards">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="name">Porter K.</div>
+        <div class="badge">✓ Verified Buyer</div>
+        <div class="text">bro i been wearing this for a week and i already got like 5 compliments. the way it catches light is actually crazy.</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="name">JahResells, 17</div>
+        <div class="badge">✓ Verified Buyer</div>
+        <div class="text">got 6 of these and resold em for 280 each same week. if u not buying these u losing money fr</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="name">Arlo D.</div>
+        <div class="badge">✓ Verified Buyer</div>
+        <div class="text">ok so i ordered this randomly at like 2am and it might be my best purchase this year.</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="name">Caleb R.</div>
+        <div class="badge">✓ Verified Buyer</div>
+        <div class="text">got this for prom and everyone kept asking where i got it. like it really does shine and look real worth the price fs</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="name">Tyler J.</div>
+        <div class="badge">✓ Verified Buyer</div>
+        <div class="text">Nah its so worth the price bruh ong it looks so real idk how they make profit</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="name">Ellis R.</div>
+        <div class="badge">✓ Verified Buyer</div>
+        <div class="text">lowkey thought this was gonna be trash bc of the price but i was wrong. this thing lowkey heavy and feels premium. W site ima buy a kkeleton next prolly</div>
+      </div>
+    </div>
+    <a href="/reviews.html?product=all" style="display:inline-block;margin-top:24px;color:#2997ff;font-size:14px;font-weight:500;">See all reviews →</a>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="left">© 2026 <a href="/">Shiny Vendors</a></div>
+      <div class="right">
+        <a href="/policies/privacy-policy.html">Privacy policy</a>
+        <span>|</span>
+        <a href="/policies/refund-policy.html">Refund policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function getCards() {
+      return Array.from(document.querySelectorAll('#productGrid .product-card'));
+    }
+
+    function filterAndSort() {
+      const grid = document.getElementById('productGrid');
+      let cards = getCards();
+
+      const inStockChip = document.querySelector('.filter-chip:first-child');
+      const outStockChip = document.querySelector('.filter-chip:nth-child(2)');
+      const showIn = inStockChip.classList.contains('active');
+      const showOut = outStockChip.classList.contains('active');
+
+      if (showIn && !showOut) {
+        cards = cards.filter(c => c.dataset.stock === 'in');
+      } else if (showOut && !showIn) {
+        cards = cards.filter(c => c.dataset.stock === 'out');
+      }
+
+      const minInput = document.querySelector('.price-chip input:first-child');
+      const maxInput = document.querySelector('.price-chip input:nth-child(2)');
+      const minPrice = parseFloat(minInput.value.replace('$', '')) || 0;
+      const maxPrice = parseFloat(maxInput.value.replace('$', '')) || 999;
+      cards = cards.filter(c => {
+        const p = parseFloat(c.dataset.price);
+        return p >= minPrice && p <= maxPrice;
+      });
+
+      const activeSort = document.querySelector('.sort-menu button.active');
+      if (activeSort) {
+        const sort = activeSort.dataset.sort;
+        if (sort === 'az') cards.sort((a, b) => a.dataset.name.localeCompare(b.dataset.name));
+        else if (sort === 'za') cards.sort((a, b) => b.dataset.name.localeCompare(a.dataset.name));
+        else if (sort === 'low') cards.sort((a, b) => parseFloat(a.dataset.price) - parseFloat(b.dataset.price));
+        else if (sort === 'high') cards.sort((a, b) => parseFloat(b.dataset.price) - parseFloat(a.dataset.price));
+        else if (sort === 'best') cards.sort((a, b) => (parseInt(b.dataset.sold) || 0) - (parseInt(a.dataset.sold) || 0));
+        else cards.sort((a, b) => parseInt(a.dataset.sold) - parseInt(b.dataset.sold));
+      }
+
+      cards.forEach(c => grid.appendChild(c));
+      document.querySelector('.count').textContent = cards.length + ' items';
+
+      cards.forEach((c, i) => {
+        c.style.animation = 'none';
+        c.offsetHeight;
+        c.style.animation = 'cardPopIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+        c.style.animationDelay = (i * 0.03) + 's';
+      });
+    }
+
+    function switchGrid(cols) {
+      const grid = document.getElementById('productGrid');
+      grid.className = 'product-grid cols-' + cols;
+      grid.style.opacity = '0.6';
+      grid.style.transform = 'scale(0.97)';
+      setTimeout(() => {
+        grid.style.transition = 'opacity 0.25s ease, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        grid.style.opacity = '1';
+        grid.style.transform = 'scale(1)';
+        setTimeout(() => { grid.style.transition = ''; }, 300);
+        getCards().forEach((c, i) => {
+          c.style.animation = 'none';
+          c.offsetHeight;
+          c.style.animation = 'cardPopIn 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+          c.style.animationDelay = (i * 0.025) + 's';
+        });
+      }, 100);
+    }
+
+    document.getElementById('sortBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.getElementById('sortMenu').classList.toggle('open');
+    });
+    document.addEventListener('click', () => document.getElementById('sortMenu').classList.remove('open'));
+    document.querySelectorAll('.sort-menu button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.sort-menu button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('sortBtn').textContent = btn.textContent;
+        document.getElementById('sortMenu').classList.remove('open');
+        filterAndSort();
+      });
+    });
+
+    document.querySelectorAll('.grid-toggle button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.grid-toggle button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        switchGrid(btn.dataset.cols);
+      });
+    });
+
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        chip.classList.toggle('active');
+        filterAndSort();
+      });
+    });
+
+    document.querySelectorAll('.price-chip input').forEach(inp => {
+      inp.addEventListener('input', filterAndSort);
+      inp.addEventListener('change', filterAndSort);
+    });
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes cardPopIn {
+        0% { opacity: 0; transform: translateY(12px) scale(0.96); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>

@@ -58,11 +58,23 @@ ul { list-style: none; }
 .product-card .info .actions { display: none; }
 @media (max-width: 768px) {
   .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .product-grid.cols-2, .product-grid.cols-3, .product-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .product-grid.cols-2 { grid-template-columns: repeat(1, 1fr); }
+  .product-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .product-grid.cols-4 { grid-template-columns: repeat(3, 1fr); }
   .product-card .info .title { font-size: 13px; }
   .product-card .info .price { font-size: 13px; }
   .product-card .info { padding: 10px; }
-  .product-card .sale-badge, .product-card .flash-badge, .product-card .oos-badge { font-size: 9px; padding: 2px 6px; }
+  .product-card .flash-badge { top: 6px; left: 6px; font-size: 8px; padding: 2px 5px; }
+  .product-card .sale-badge { top: 6px; right: 6px; font-size: 8px; padding: 2px 5px; }
+  .product-card .oos-badge { top: 6px; left: 6px; font-size: 8px; padding: 2px 5px; }
+  .product-grid.cols-4 .product-card .sale-badge { display: none; }
+  .product-grid.cols-4 .product-card .flash-badge { top: 4px; left: 4px; font-size: 8px; padding: 2px 5px; }
+  .product-grid.cols-4 .product-card .info { padding: 8px; }
+  .product-grid.cols-4 .product-card .info .title { font-size: 11px; line-height: 1.2; }
+  .product-grid.cols-4 .product-card .info .price { font-size: 11px; flex-wrap: wrap; gap: 4px; }
+  .product-grid.cols-4 .product-card .info .price .regular { font-size: 10px; }
+  .product-grid.cols-4 .product-card .info .price .sale { font-size: 11px; }
+  .product-grid.cols-4 .product-card .info .shop-link { font-size: 11px; margin-top: 4px; }
 }
 
 .collection-page { max-width: 1200px; margin: 0 auto; padding: 0 20px 40px; background: #000; }
@@ -105,9 +117,9 @@ ul { list-style: none; }
   .filter-bar { overflow-x: visible; flex-wrap: wrap; width: 100%; gap: 8px; }
   .filter-bar .filter-chip { padding: 6px 10px; font-size: 12px; white-space: nowrap; }
   .filter-bar .price-chip input { width: 55px; padding: 6px 8px; font-size: 12px; }
-  .filter-bar .filter-label { font-size: 12px; }
+  .filter-bar .filter-label { font-size: 12px; display: block; width: 100%; margin-top: 4px; }
   .collection-toolbar { width: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-  .collection-toolbar .count { font-size: 12px; }
+  .collection-toolbar .count { font-size: 13px; width: 100%; margin-bottom: 4px; }
   .sort-btn { padding: 6px 10px; font-size: 12px; }
   .grid-toggle button { width: 28px; height: 28px; font-size: 12px; }
   .sort-menu { min-width: 180px; right: auto; left: 0; }

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+  <meta name="view-transition" content="same-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Reviews – Frozen Wrists</title>
 <link rel="stylesheet" href="/css/style.css">
@@ -13,16 +14,18 @@
 .review-sort::after{content:'\25BE';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:#6e6e73;pointer-events:none}
 @keyframes cardPopIn{0%{opacity:0;transform:translateY(12px) scale(0.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
 </style>
+<script src="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.js" defer></script>
 </head>
 <body>
-  <div class="announcement-bar">⚡ 50% OFF SITE-WIDE — LIMITED TIME ⚡</div>
+  <div id="snipcart" hidden data-api-key="NGfkMmU1NTUtMjI0Mi00ZjIwLTg5ZDItOTAxMmRjYzVhNGY3NjM5MTY2NzU4MTUxNDU3OTQ3" data-config-modal-style="side" data-currency="usd"></div>
+    <div class="announcement-bar">⚡ 50% OFF SITE-WIDE — LIMITED TIME ⚡</div>
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="header-logo"><img src="/images/logo.png" alt="Frozen Wrists - Home"></a>
       <div class="header-icons">
         <a href="/search.html">🔍 <span class="search-text">Search</span></a>
         <a href="/account.html">👤 <span class="account-text">Account</span></a>
-        <a href="/cart.html">🛒 0</a>
+        <a href="#" class="snipcart-checkout">🛒 <span class="snipcart-items-count"></span></a>
       </div>
     </div>
   </header>

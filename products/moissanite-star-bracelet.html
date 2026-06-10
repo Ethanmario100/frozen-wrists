@@ -2,26 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="view-transition" content="same-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Moissanite Cuban Bracelet – Frozen Wrists</title>
   <link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.js" defer></script>
 </head>
 <body>
-    <div class="announcement-bar">⚡ 50% OFF SITE-WIDE — LIMITED TIME ⚡</div>
+  <div id="snipcart" hidden data-api-key="NGfkMmU1NTUtMjI0Mi00ZjIwLTg5ZDItOTAxMmRjYzVhNGY3NjM5MTY2NzU4MTUxNDU3OTQ3" data-config-modal-style="side" data-currency="usd"></div>
+      <div class="announcement-bar">⚡ 50% OFF SITE-WIDE — LIMITED TIME ⚡</div>
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="header-logo"><img src="/images/logo.png" alt="Frozen Wrists - Home"></a>
       <div class="header-icons">
         <a href="/search.html">🔍 <span class="search-text">Search</span></a>
         <a href="/account.html">👤 <span class="account-text">Account</span></a>
-        <a href="/cart.html">🛒 0</a>
+        <a href="#" class="snipcart-checkout">🛒 <span class="snipcart-items-count"></span></a>
       </div>
     </div>
   </header>
 
   <div class="product-page">
     <div class="gallery">
-      <div class="main-image"><img src="/images/product_10.png" alt="Moissanite Cuban Bracelet"></div>
+      <div class="main-image"><img style="width:100%;height:auto;max-height:560px;object-fit:contain;display:block" src="/images/product_10.png" alt="Moissanite Cuban Bracelet"></div>
     </div>
     <div class="info">
       <h1>Moissanite Cuban Bracelet</h1>
@@ -32,13 +35,39 @@
         <li>💎 Premium Moissanite</li>
         <li>✨ 18K Gold Plated</li>
         <li>🛡️ Hypoallergenic</li>
-      </ul>
-      <div class="qty-selector">
-        <button onclick="if(this.nextElementSibling.textContent>1)this.nextElementSibling.textContent--">-</button>
-        <span>1</span>
-        <button onclick="this.previousElementSibling.textContent++">+</button>
+      </ul><div class="bundles">
+        <div class="bundle-card">
+          <div class="bundle-badge">FREE SHIPPING</div>
+          <div class="bundle-emoji">💎</div>
+          <div class="bundle-title">Signature Piece</div>
+          <div class="bundle-qty">Buy 1</div>
+          <div class="bundle-price"><span class="price-num">$19.99</span></div>
+          <div class="bundle-reg">$19.99</div>
+          <button class="snipcart-add-item bundle-btn" data-item-id="cuban-bracelet-1-1" data-item-price="19.99" data-item-url="/products/moissanite-star-bracelet.html" data-item-name="Moissanite Cuban Bracelet (x1)" data-item-image="/images/product_10.png">Add to cart</button>
+        </div>
+        <div class="bundle-card popular">
+          <div class="bundle-badge">MOST POPULAR</div>
+          <div class="bundle-emoji">✨</div>
+          <div class="bundle-title">Double the Shine</div>
+          <div class="bundle-qty">Buy 2</div>
+          <div class="bundle-price"><span class="price-num">$30.00</span></div>
+          <div class="bundle-reg">$39.98</div>
+          <button class="snipcart-add-item bundle-btn" data-item-id="cuban-bracelet-1-2" data-item-price="30.00" data-item-url="/products/moissanite-star-bracelet.html" data-item-name="Moissanite Cuban Bracelet (x2)" data-item-image="/images/product_10.png">Add to cart</button>
+        </div>
+        <div class="bundle-card best">
+          <div class="bundle-badge">BEST VALUE</div>
+          <div class="bundle-emoji">👪</div>
+          <div class="bundle-title">Buy 3 Get 2 Free</div>
+          <div class="bundle-qty">5 Items</div>
+          <div class="bundle-price"><span class="price-num">$60.00</span></div>
+          <div class="bundle-reg">$99.95</div>
+          <button class="snipcart-add-item bundle-btn" data-item-id="cuban-bracelet-1-5" data-item-price="60.00" data-item-url="/products/moissanite-star-bracelet.html" data-item-name="Moissanite Cuban Bracelet (x5)" data-item-image="/images/product_10.png">Add to cart</button>
+        </div>
       </div>
-      <button class="add-to-cart">Add to cart</button>
+      <div class="buy-now-bar">
+        <button class="snipcart-add-item buy-now-btn" data-item-id="cuban-bracelet-1" data-item-price="19.99" data-item-url="/products/moissanite-star-bracelet.html" data-item-name="Moissanite Cuban Bracelet" data-item-image="/images/product_10.png">Add to cart</button>
+        <button class="snipcart-add-item shop-pay-btn" data-item-id="cuban-bracelet-1-shop" data-item-price="19.99" data-item-url="/products/moissanite-star-bracelet.html" data-item-name="Moissanite Cuban Bracelet" data-item-image="/images/product_10.png">🛍 Buy with Shop</button>
+      </div></button>
     </div>
   </div>
   <div class="video-wheel">
@@ -76,7 +105,7 @@
     </div>
   </div>
 
-    <div class="video-wheel" style="padding:10px 0">
+    <div class="video-wheel" style="padding:10px 20px">
     <h2>Video And Photo Reviews</h2>
     <div class="photo-grid" id="photoPage1" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
       <div class="video-card" style="width:100%;cursor:pointer" onclick="openLightbox('/vids2/IMG_1124.MOV','video')"><video src="/vids2/IMG_1124.MOV" autoplay loop muted playsinline style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px 14px 0 0"></video><div class="label" style="white-space:normal;text-align:left;padding:10px 12px 12px;font-size:12px;line-height:1.4"><div style="color:#f5d742;font-size:12px">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div style="font-weight:600;color:#f5f5f7;margin:3px 0 1px">Rico G.</div><div style="font-size:11px;color:#6e6e73">@Ricostackthatpaper</div><div style="color:#30d158;font-size:11px;margin-top:2px">&#10003; Verified Buyer</div><div style="color:#a1a1a6;margin-top:3px">This watch is crazy under the light no cap</div></div></div>

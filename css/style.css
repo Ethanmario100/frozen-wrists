@@ -1,5 +1,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif; background: #000; color: #f5f5f7; -webkit-font-smoothing: antialiased; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif; background: #000; color: #f5f5f7; -webkit-font-smoothing: antialiased; animation: pageIn 0.5s cubic-bezier(0.16,1,0.3,1); }
+@keyframes pageIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+@view-transition { navigation: auto; }
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 ul { list-style: none; }
@@ -76,6 +78,8 @@ ul { list-style: none; }
   .product-grid.cols-4 .product-card .info .price .regular { font-size: 10px; }
   .product-grid.cols-4 .product-card .info .price .sale { font-size: 11px; }
   .product-grid.cols-4 .product-card .info .shop-link { font-size: 11px; margin-top: 4px; }
+  .photo-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; padding: 0 8px; }
+  .photo-grid .video-card .label { padding: 8px 10px 10px; font-size: 11px; }
 }
 
 .collection-page { max-width: 1200px; margin: 0 auto; padding: 0 20px 40px; background: #000; }

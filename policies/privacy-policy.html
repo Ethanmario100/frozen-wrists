@@ -14,9 +14,6 @@ window.addToCart=function(id,name,price,img){
   var it=cart.find(function(i){return i.id===id});
   if(it)it.qty++;else cart.push({id:id,name:name,price:parseFloat(price),img:img,qty:1});
   saveCart();
-  var t=document.createElement('div');t.textContent=name+' added to cart';
-  t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0071e3;color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:600;z-index:99999';
-  document.body.appendChild(t);setTimeout(function(){t.remove()},2000)
 };
 function cartCount(){return cart.reduce(function(t,i){return t+i.qty},0)}
 function cartTotal(){return cart.reduce(function(t,i){return t+i.price*i.qty},0).toFixed(2)}

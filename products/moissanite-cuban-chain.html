@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded',function(){var cc=document.getEleme
 <script src="https://js.stripe.com/v3/"></script>
 <script>
 var stripe = Stripe("pk_live_51TgntKFwNNiux5A8av1rJhyPPBVgrLYZDx60PsWTJItrD4qsBiplYXyXcmv6ncCBRujIRfxa3bWv6ySjgMj8fN7800hogOyOCZ");
+document.addEventListener("DOMContentLoaded", function() {
 var apBtn = document.getElementById("apple-pay-btn");
 if (apBtn) {
   var price = Math.round(parseFloat(apBtn.dataset.price) * 100);
@@ -168,6 +169,7 @@ if (apBtn) {
     ev.updateWith({ status: "success" });
   });
 }
+});
 </script>
 </head>
 <body>

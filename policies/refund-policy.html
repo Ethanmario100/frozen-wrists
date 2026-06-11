@@ -5,19 +5,67 @@
   <meta name="view-transition" content="same-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Frozen Wrists - Refund policy</title>
-  <link rel="stylesheet" href="/css/style.css">
-<script src="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.js" defer></script>
+    <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+window.cart=JSON.parse(localStorage.getItem('fw_cart')||'[]');
+function saveCart(){localStorage.setItem('fw_cart',JSON.stringify(cart));var cc=document.getElementById('cartCount');if(cc)cc.textContent=cart.reduce(function(t,i){return t+i.qty},0)}
+window.addToCart=function(id,name,price,img){
+  var it=cart.find(function(i){return i.id===id});
+  if(it)it.qty++;else cart.push({id:id,name:name,price:parseFloat(price),img:img,qty:1});
+  saveCart();
+  var t=document.createElement('div');t.textContent=name+' added to cart';
+  t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0071e3;color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:600;z-index:99999';
+  document.body.appendChild(t);setTimeout(function(){t.remove()},2000)
+};
+function cartCount(){return cart.reduce(function(t,i){return t+i.qty},0)}
+function cartTotal(){return cart.reduce(function(t,i){return t+i.price*i.qty},0).toFixed(2)}
+window.openCart=function(){
+  if(cart.length===0){var o=document.createElement("div");o.style.cssText="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:99998;opacity:0;transition:opacity 0.3s ease";var p=document.createElement("div");p.style.cssText="position:fixed;top:0;right:0;bottom:0;width:400px;max-width:100vw;background:#1c1c1e;z-index:99999;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.32,0.72,0,1);display:flex;flex-direction:column";var h=document.createElement("div");h.style.cssText="padding:20px 24px;border-bottom:1px solid #2a2a2c;display:flex;justify-content:space-between;align-items:center";h.innerHTML="<h3 style=\"color:#f5f5f7;font-size:1.2rem;font-weight:700;margin:0\">Cart (0 items)</h3><button style=\"background:none;border:none;color:#a1a1a6;font-size:13px;cursor:pointer\">Close</button>";p.appendChild(h);var m=document.createElement("div");m.style.cssText="flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px";m.innerHTML="<div style=\"text-align:center\"><p style=\"color:#f5f5f7;font-size:1.1rem;font-weight:600;margin:0 0 6px 0\">Your cart is empty</p><p style=\"color:#a1a1a6;font-size:14px;margin:0\">Add some products to get started</p></div>";p.appendChild(m);var cb=h.querySelector("button");o.appendChild(p);document.body.appendChild(o);requestAnimationFrame(function(){o.style.opacity="1";p.style.transform="translateX(0)"});var close=function(){o.style.opacity="0";p.style.transform="translateX(100%)";setTimeout(function(){o.remove()},350)};cb.onclick=close;o.onclick=function(e){if(e.target===o)close()};return}
+  var o=document.createElement('div');o.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:99998;opacity:0;transition:opacity 0.3s ease';
+  var p=document.createElement('div');p.style.cssText='position:fixed;top:0;right:0;bottom:0;width:400px;max-width:100vw;background:#1c1c1e;z-index:99999;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.32,0.72,0,1);display:flex;flex-direction:column';
+  var h=document.createElement('div');h.style.cssText='padding:20px 24px;border-bottom:1px solid #2a2a2c;display:flex;justify-content:space-between;align-items:center';
+  h.innerHTML='<h3 style="color:#f5f5f7;font-size:1.2rem;font-weight:700;margin:0">Cart ('+cartCount()+' items)</h3><button style="background:none;border:none;color:#a1a1a6;font-size:13px;cursor:pointer">Close</button>';
+  var cb=h.querySelector('button');p.appendChild(h);
+  var l=document.createElement('div');l.style.cssText='flex:1;overflow-y:auto;padding:12px 24px';
+  cart.forEach(function(it,i){
+    var r=document.createElement('div');r.style.cssText='display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #2a2a2c';
+    if(it.img){var im=document.createElement('img');im.src=it.img;im.style.cssText='width:52px;height:52px;border-radius:10px;object-fit:cover;background:#2c2c2e';r.appendChild(im)}
+    var m=document.createElement('div');m.style.cssText='flex:1';
+    m.innerHTML='<div style="font-size:13px;font-weight:600;color:#f5f5f7">'+it.name+'</div><div style="font-size:12px;color:#6e6e73;margin-top:2px">$'+it.price.toFixed(2)+' x '+it.qty+'</div>';
+    r.appendChild(m);
+    var x=document.createElement('button');x.textContent='Remove';x.style.cssText='background:none;border:1px solid #3a3a3c;color:#ff453a;cursor:pointer;font-size:11px;padding:4px 10px;border-radius:8px';x.dataset.rm=i;r.appendChild(x);
+    l.appendChild(r)
+  });
+  p.appendChild(l);
+  var f=document.createElement('div');f.style.cssText='padding:16px 24px;border-top:1px solid #2a2a2c';
+  f.innerHTML='<div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:16px;font-weight:700;color:#f5f5f7"><span>Total</span><span>$'+cartTotal()+'</span></div>';
+  var ap=document.createElement('button');ap.innerHTML='<span style="font-family:-apple-system,Helvetica Neue,sans-serif;font-size:22px;line-height:1">\uf8ff</span> Pay';ap.style.cssText='width:100%;background:#000;color:#fff;border:2px solid #fff;padding:12px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:8px';ap.onclick=function(){addToCart('quick-'+Date.now(),'Quick Purchase',parseFloat(cartTotal()),'');checkout()};f.appendChild(ap);var kl=document.createElement('button');kl.innerHTML='<span style="background:#ffb3c7;color:#000;font-weight:900;width:20px;height:20px;border-radius:5px;font-size:13px;line-height:20px;display:inline-block;text-align:center;margin-right:6px">K</span>Continue with Klarna';kl.style.cssText='width:100%;background:#000;color:#fff;border:2px solid #ffb3c7;padding:12px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-bottom:8px';kl.onclick=function(){checkout()};f.appendChild(kl);var ck=document.createElement('button');ck.textContent='Checkout';ck.style.cssText='width:100%;background:#0071e3;color:#fff;border:none;padding:14px;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer';ck.onclick=window.checkout;f.appendChild(ck);
+  p.appendChild(f);o.appendChild(p);
+  document.body.appendChild(o);
+  requestAnimationFrame(function(){o.style.opacity='1';p.style.transform='translateX(0)'});
+  cb.onclick=function(){o.style.opacity='0';p.style.transform='translateX(100%)';setTimeout(function(){o.remove()},350)};
+  o.onclick=function(e){if(e.target===o){o.style.opacity='0';p.style.transform='translateX(100%)';setTimeout(function(){o.remove()},350)}};
+  l.addEventListener('click',function(e){var b=e.target.closest('button');if(b&&b.dataset.rm!==undefined){window.cart.splice(parseInt(b.dataset.rm),1);saveCart();o.remove();openCart()}});
+};
+window.checkout=async function(){
+  if(cart.length===0)return;
+  var li=cart.map(function(it){return{price_data:{currency:'usd',product_data:{name:it.name,images:it.img?[location.origin+it.img]:[]},unit_amount:Math.round(it.price*100)},quantity:it.qty}});
+  try{var r=await fetch('/api/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({line_items:li})});var d=await r.json();if(d.url)location.href=d.url;else{cart=[];saveCart();var t=document.createElement('div');t.textContent='Demo mode';t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0071e3;color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:600;z-index:99999';document.body.appendChild(t);setTimeout(function(){t.remove()},2000)}}
+  catch(e){var t=document.createElement('div');t.textContent='Server error';t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0071e3;color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:600;z-index:99999';document.body.appendChild(t);setTimeout(function(){t.remove()},2000)}
+};
+window.cart=window.cart||JSON.parse(localStorage.getItem('fw_cart')||'[]');
+var cc=document.getElementById('cartCount');if(cc)cc.textContent=window.cart.reduce(function(t,i){return t+i.qty},0)</script>
 </head>
 <body>
-  <div id="snipcart" hidden data-api-key="NGfkMmU1NTUtMjI0Mi00ZjIwLTg5ZDItOTAxMmRjYzVhNGY3NjM5MTY2NzU4MTUxNDU3OTQ3" data-config-modal-style="side" data-currency="usd"></div>
-      <div class="announcement-bar">⚡ 50% OFF SITE-WIDE — LIMITED TIME ⚡</div>
+  <div class="announcement-bar">⚡ 50% OFF SITE-WIDE — LIMITED TIME ⚡</div>
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="header-logo"><img src="/images/logo.png" alt="Frozen Wrists - Home"></a>
       <div class="header-icons">
-        <a href="/search.html">🔍 <span class="search-text">Search</span></a>
-        <a href="/account.html">👤 <span class="account-text">Account</span></a>
-        <a href="#" class="snipcart-checkout">🛒 <span class="snipcart-items-count"></span></a>
+        <a href="#" onclick="openSearch();return false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><circle cx="11" cy="11" r="8"/><line x1="22" y1="22" x2="17.5" y2="17.5"/></svg></a>
+        
+        <a href="#" onclick="window.openCart()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> <span id="cartCount">0</span></a>
       </div>
     </div>
   </header>
@@ -68,5 +116,39 @@
       </div>
     </div>
   </footer>
+<div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
+  <div class="search-box">
+    <div style="position:relative"><svg style="position:absolute;left:16px;top:50%;transform:translateY(-50%)" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6e6e73" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="searchInput" placeholder="Search Frozen Wrists" oninput="doSearch()" style="padding-left:44px"></div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+<script>
+function openSearch(){var o=document.getElementById("searchOverlay");o.classList.add("show");setTimeout(function(){document.getElementById("searchInput").focus();showRecommended()},150)}
+function closeSearch(){var o=document.getElementById("searchOverlay");o.classList.remove("show");document.getElementById("searchInput").value="";document.getElementById("searchResults").innerHTML=""}
+var sp=[{n:"Moissanite Watch",p:"/products/moissanite-generic-watch.html",i:"/images/product_1a.png",pr:"49.99",rp:"99.99",s:"in",t:"watch"},{n:"Moissanite Thorn Watch",p:"/products/moissanite-generic-watch-supplier-5.html",i:"/images/product_4a.png",pr:"49.99",rp:"99.99",s:"in",t:"watch"},{n:"Moissanite Skeleton Watch",p:"/products/moissanite-generic-watch-supplier-2.html",i:"/images/product_5a.png",pr:"49.99",rp:"99.99",s:"in",t:"watch"},{n:"Moissanite Arabic Watch",p:"/products/moissanite-generic-watch-supplier-3.html",i:"/images/product_7a.png",pr:"49.99",rp:"99.99",s:"in",t:"watch"},{n:"Moissanite Gold Watch",p:"/products/moissanite-generic-watch-supplier-1.html",i:"/images/product_8a.png",pr:"49.99",rp:"99.99",s:"in",t:"watch"},{n:"Moissanite Strap Watch",p:"/products/moissanite-strap-watch-2.html",i:"/images/product_14a.png",pr:"49.99",rp:"99.99",s:"in",t:"watch"},{n:"Moissanite Strap Watch",p:"/products/moissanite-strap-watch-1.html",i:"/images/product_15a.png",pr:"49.99",rp:"99.99",s:"in",t:"watch"},{n:"Moissanite Strap Watch",p:"/products/moissanite-strap-watch.html",i:"/images/product_16a.png",pr:"49.99",rp:"99.99",s:"in",t:"watch"},{n:"Moissanite Watch",p:"/products/moissanite-generic-watch-2.html",i:"/images/product_17a.png",pr:"49.99",rp:"99.99",s:"in",t:"watch"},{n:"Moissanite Watch",p:"/products/moissanite-generic-watch-supplier.html",i:"/images/product_2a.png",pr:"49.99",rp:"99.99",s:"in",t:"watch"},{n:"Moissanite Watch",p:"/products/moissanite-generic-watch-supplier-6.html",i:"/images/product_3a.png",pr:"49.99",rp:"99.99",s:"in",t:"watch"},{n:"Moissanite Watch",p:"/products/moissanite-generic-watch-supplier-4.html",i:"/images/product_6a.png",pr:"49.99",rp:"99.99",s:"in",t:"watch"},{n:"Moissanite Clove Bracelet",p:"/products/moissanite-drop-bracelet.html",i:"/images/product_9.png",pr:"19.99",rp:"39.99",s:"out",t:"bracelet"},{n:"Moissanite Cuban Bracelet",p:"/products/moissanite-star-bracelet.html",i:"/images/product_10.png",pr:"19.99",rp:"39.99",s:"in",t:"bracelet"},{n:"Moissanite Cuban Bracelet",p:"/products/moissanite-generic-watch-1.html",i:"/images/product_11.png",pr:"19.99",rp:"39.99",s:"in",t:"bracelet"},{n:"Moissanite Cuban Chain",p:"/products/moissanite-cuban-chain-1.html",i:"/images/product_12a.png",pr:"59.99",rp:"119.99",s:"in",t:"chain"},{n:"Moissanite Cuban Chain",p:"/products/moissanite-cuban-chain.html",i:"/images/product_12b.png",pr:"59.99",rp:"119.99",s:"in",t:"chain"},{n:"Moissanite Infinity Chain",p:"/products/moissanite-tennis-necklace.html",i:"/images/product_13.png",pr:"59.99",rp:"119.99",s:"in",t:"chain"}];
+function showRecommended(){
+  var rec=sp.filter(function(x){return x.t==="watch"}).slice(0,6);
+  document.getElementById("searchResults").innerHTML='<div style="font-size:12px;color:#6e6e73;padding:8px 12px 4px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600">Recommended</div>'+rec.map(function(it,i){return buildResult(it,i)}).join("")
+}
+function doSearch(){
+  var q=document.getElementById("searchInput").value.toLowerCase();
+  var r=document.getElementById("searchResults");
+  if(q.length<1){showRecommended();return}
+  var res=sp.filter(function(it){return it.n.toLowerCase().indexOf(q)>=0});
+  if(res.length===0){r.innerHTML='<div style="color:#6e6e73;text-align:center;padding:24px;font-size:14px">No results for "'+q+'"</div>';return}
+  // If query matches a category, prioritize those
+  if(q==="watch"||q==="watches")res.sort(function(a,b){return a.t==="watch"?-1:1});
+  if(q==="bracelet"||q==="bracelets")res.sort(function(a,b){return a.t==="bracelet"?-1:1});
+  if(q==="chain"||q==="chains")res.sort(function(a,b){return a.t==="chain"?-1:1});
+  r.innerHTML=res.map(function(it,i){return buildResult(it,i)}).join("")
+}
+function buildResult(it,i){
+  var sold=it.s==="out"?'<span style="color:#ff453a;font-size:12px;font-weight:600;margin-right:8px">Sold out</span>':'';
+  var price=sold?'<span class="sr-reg">$'+it.rp+'</span>':'<span class="sr-reg">$'+it.rp+'</span><span class="sr-price">$'+it.pr+'</span>';
+  var cls=sold?' style="opacity:0.5"':'';
+  return'<a href="'+it.p+'" style="animation:fadeUp 0.3s ease forwards;animation-delay:'+(i*0.04)+'s;opacity:0"'+cls+'><img src="'+it.i+'"><div class="sr-info"><div class="sr-name">'+it.n+'</div></div>'+sold+price+'</a>'
+}
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSearch()});
+</script>
 </body>
 </html>

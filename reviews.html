@@ -50,8 +50,8 @@ window.openCart=function(){
   pr.on("paymentmethod",function(ev){
     var sc=ev.shippingOption?ev.shippingOption.id==="express"?1299:599:599;
     var ta=total+sc;
-    fetch("/.netlify/functions/create-payment-intent",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({amount:ta,description:"Frozen Wrists Order"})}).then(function(r){return r.json()}).then(function(d){
-      if(d.clientSecret){stripe.confirmCardPayment(d.clientSecret,{payment_method:ev.paymentMethod.id,shipping:ev.shippingAddress?{name:ev.payerName||"",address:{line1:ev.shippingAddress.addressLine?.[0]||"",city:ev.shippingAddress.city||"",state:ev.shippingAddress.region||"",postal_code:ev.shippingAddress.postalCode||"",country:ev.shippingAddress.country||"US"}}:undefined}).then(function(r){if(r.error)ev.complete("fail");else if(r.paymentIntent){ev.complete("success");cart=[];saveCart();alert("Payment successful!")}})}else ev.complete("fail")
+    fetch("/.netlify/functions/create-payment-intent",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({amount:ta,paymentMethodId:ev.paymentMethod.id,description:"Frozen Wrists Order",shipping:ev.shippingAddress?{name:ev.payerName||"",address:{line1:ev.shippingAddress.addressLine?.[0]||"",city:ev.shippingAddress.city||"",state:ev.shippingAddress.region||"",postal_code:ev.shippingAddress.postalCode||"",country:ev.shippingAddress.country||"US"}}:undefined})}).then(function(r){return r.json()}).then(function(d){
+      if(d.success){ev.complete("success");cart=[];saveCart();alert("Payment successful!")}else ev.complete("fail")
     }).catch(function(){ev.complete("fail")})
   });
   pr.on("shippingaddresschange",function(ev){ev.updateWith({status:"success"})});

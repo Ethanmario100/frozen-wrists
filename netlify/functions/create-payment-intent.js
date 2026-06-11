@@ -11,8 +11,10 @@ exports.handler = async function(event) {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: data.amount,
       currency: 'usd',
-      payment_method_types: ['card', 'apple_pay'],
+      payment_method: data.paymentMethodId,
+      confirm: true,
       description: data.description || 'Frozen Wrists Order',
+      shipping: data.shipping || undefined,
       automatic_payment_methods: { enabled: true },
       metadata: data.metadata || {},
     });
@@ -20,13 +22,13 @@ exports.handler = async function(event) {
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ clientSecret: paymentIntent.client_secret }),
+      body: JSON.stringify({ success: true, id: paymentIntent.id }),
     };
   } catch (error) {
     return {
-      statusCode: 500,
+      statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: error.message }),
+      body: JSON.stringify({ success: false, error: error.message }),
     };
   }
 };

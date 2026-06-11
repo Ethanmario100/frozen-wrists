@@ -89,15 +89,13 @@ if (apBtn) {
     ]
   });
 
-  var prButton = stripe.elements().create("paymentRequestButton", {
-    paymentRequest: paymentRequest,
-    style: { paymentRequestButton: { type: "buy", theme: "dark", height: "48px" } }
-  });
-
   paymentRequest.canMakePayment().then(function(result) {
-    if (result) {
-      prButton.mount("#apple-pay-btn");
-      apBtn.style.display = "block";
+    if (result && result.applePay) {
+      apBtn.style.cssText = "display:flex;cursor:pointer;opacity:1;pointer-events:auto";
+      apBtn.onclick = function(e) {
+        e.preventDefault();
+        paymentRequest.show();
+      };
     } else {
       apBtn.style.display = "none";
     }

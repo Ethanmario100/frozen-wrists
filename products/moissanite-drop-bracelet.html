@@ -89,15 +89,13 @@ if (apBtn) {
     ]
   });
 
-  var prButton = stripe.elements().create("paymentRequestButton", {
-    paymentRequest: paymentRequest,
-    style: { paymentRequestButton: { type: "buy", theme: "dark", height: "48px" } }
-  });
-
   paymentRequest.canMakePayment().then(function(result) {
-    if (result) {
-      prButton.mount("#apple-pay-btn");
-      apBtn.style.display = "block";
+    if (result && result.applePay) {
+      apBtn.style.cssText = "display:flex;cursor:pointer;opacity:1;pointer-events:auto";
+      apBtn.onclick = function(e) {
+        e.preventDefault();
+        paymentRequest.show();
+      };
     } else {
       apBtn.style.display = "none";
     }
@@ -212,7 +210,7 @@ if (apBtn) {
       </div>
       <div class="buy-now-bar">
         <button class="buy-now-btn" onclick="addToCart('Moissanite Clove Bracelet-single','Moissanite Clove Bracelet',19.99,'/images/product_9.png');checkout()" disabled style="opacity:0.4;cursor:not-allowed">Out of stock</button>
-        <button class="shop-pay-btn" style="opacity:0.4;cursor:not-allowed;pointer-events:none" id="apple-pay-btn" data-name="Moissanite Clove Bracelet" data-price="19.99" data-img="/images/product_9.png"></button>
+        <button class="shop-pay-btn apple-pay-btn" id="apple-pay-btn" data-name="Moissanite Clove Bracelet" data-price="19.99" data-img="/images/product_9.png"></button>
       </div></button>
     </div>
   </div>

@@ -62,7 +62,7 @@ window.checkout=async function(){
   catch(e){var t=document.createElement('div');t.textContent='Server error';t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0071e3;color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:600;z-index:99999';document.body.appendChild(t);setTimeout(function(){t.remove()},2000)}
 };
 window.cart=window.cart||JSON.parse(localStorage.getItem('fw_cart')||'[]');
-var cc=document.getElementById('cartCount');if(cc)cc.textContent=window.cart.reduce(function(t,i){return t+i.qty},0)</script>
+document.addEventListener('DOMContentLoaded',function(){var cc=document.getElementById('cartCount');if(cc)cc.textContent=window.cart.reduce(function(t,i){return t+i.qty},0)})</script>
 </head>
 <body>
   <div class="announcement-bar">⚡ 50% OFF SITE-WIDE — LIMITED TIME ⚡</div>

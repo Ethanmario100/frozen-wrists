@@ -1,14 +1,9 @@
 [build]
+  command = "npm install"
+  functions = "netlify/functions"
   publish = "."
 
-[build.environment]
-  NODE_VERSION = "18"
-
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  from = "/api/create-checkout"
+  to = "/.netlify/functions/create-checkout"
   status = 200
-
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"

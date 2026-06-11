@@ -8,10 +8,10 @@ export async function onRequest(context) {
     });
   }
 
-  const stripe = new Stripe(context.env.STRIPE_SECRET_KEY);
-
   try {
+    const stripe = new Stripe(context.env.STRIPE_SECRET_KEY);
     const data = await context.request.json();
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: data.line_items,

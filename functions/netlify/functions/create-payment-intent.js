@@ -8,9 +8,8 @@ export async function onRequest(context) {
     });
   }
 
-  const stripe = new Stripe(context.env.STRIPE_SECRET_KEY);
-
   try {
+    const stripe = new Stripe(context.env.STRIPE_SECRET_KEY);
     const data = await context.request.json();
 
     const paymentIntent = await stripe.paymentIntents.create({
